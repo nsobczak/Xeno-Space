@@ -34,23 +34,26 @@ public class PlayerController : MonoBehaviour
         {
             if (m_shootTimer <= 0)
             {
-                float angle = Random.Range(-0.2f, 0.2f) + Mathf.PI / 2.0f;
                 GameObject shoot;
-
+//                float angle = Random.Range(-0.2f, 0.2f) + Mathf.PI / 2.0f;
 //                GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(0.2f, 0, 0), Quaternion.identity);
 //                shoot.GetComponent<ShootComponent>().Direction =
 //                    new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
 //                shoot.GetComponent<ShootComponent>().Speed = Random.Range(4, 6);
 
-                shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(0.2f, 0, 0), Quaternion.identity);
+                shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(0.2f, 0, 0),
+                    Quaternion.identity);
                 shoot.GetComponent<ShootComponent>().Direction = new Vector3(-1, 1).normalized;
 
-                shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(0.2f, 0, 0), Quaternion.identity);
+                shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(0.2f, 0, 0),
+                    Quaternion.identity);
                 shoot.GetComponent<ShootComponent>().Direction = new Vector3(1, 1).normalized;
 
-                shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(0.2f, 0, 0), Quaternion.identity);
+                shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(0.2f, 0, 0),
+                    Quaternion.identity);
                 shoot.GetComponent<ShootComponent>().Direction = new Vector3(0, 1);
-                shoot = GameObject.Instantiate(PrefabShoot, transform.position - new Vector3(0.2f, 0, 0), Quaternion.identity);
+                shoot = GameObject.Instantiate(PrefabShoot, transform.position - new Vector3(0.2f, 0, 0),
+                    Quaternion.identity);
                 shoot.GetComponent<ShootComponent>().Direction = new Vector3(0, 1);
 
                 m_shootTimer = 0.1f; //pour tirer toutes les 100ms

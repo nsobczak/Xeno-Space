@@ -10,15 +10,14 @@ public class ShootComponent : MonoBehaviour
     void Update()
     {
         transform.position += Direction * Time.deltaTime * Speed;
-        GameObject.Destroy(gameObject, 0.5f);
+        GameObject.Destroy(gameObject, 2f);
     }
 
-//    void OnTriggerEnter2D(Collider2D collider)
-//    {
-//        Debug.Log("coucou");
-//        if (collider.gameObject.GetComponent<ShootComponent>())
-//            return;
-//
-//        GameObject.Destroy(gameObject);
-//    }
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.GetComponent<ShootComponent>() || collider.gameObject.GetComponent<PlayerController>())
+            return;
+
+        GameObject.Destroy(gameObject);
+    }
 }

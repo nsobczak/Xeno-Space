@@ -108,7 +108,24 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &877161059
+--- !u!1 &414421430 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1747827936638840, guid: 849639dfabe4f6846810fd662402430e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1024029289}
+--- !u!114 &414421435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 414421430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b68ae488ea5f0874ba68eb0461dd3227, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Life: 100
+--- !u!1001 &769183371
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -147,12 +164,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114495790042703310, guid: 7ec4e6851bb963245807a85474598dd4,
-        type: 2}
-      propertyPath: PrefabShoot
-      value: 
-      objectReference: {fileID: 1864150573901220, guid: 859d5719270779441bb1fa630b6b0b48,
-        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7ec4e6851bb963245807a85474598dd4, type: 2}
   m_IsPrefabParent: 0
