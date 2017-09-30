@@ -147,6 +147,12 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114495790042703310, guid: 7ec4e6851bb963245807a85474598dd4,
+        type: 2}
+      propertyPath: PrefabShoot
+      value: 
+      objectReference: {fileID: 1864150573901220, guid: 859d5719270779441bb1fa630b6b0b48,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7ec4e6851bb963245807a85474598dd4, type: 2}
   m_IsPrefabParent: 0
@@ -241,7 +247,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.032115053, g: 0.07109645, b: 0.13235295, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -281,19 +287,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1957210525 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1458078519396590, guid: 7ec4e6851bb963245807a85474598dd4,
-    type: 2}
-  m_PrefabInternal: {fileID: 877161059}
---- !u!114 &1957210526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1957210525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4decd8c4af3d9394b8df1f4be34ab4c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

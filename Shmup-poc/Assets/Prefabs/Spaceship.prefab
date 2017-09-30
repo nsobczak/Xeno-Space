@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4653469325523376}
   - component: {fileID: 212592476556674324}
+  - component: {fileID: 114495790042703310}
   m_Layer: 0
   m_Name: Spaceship
   m_TagString: Untagged
@@ -40,6 +41,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114495790042703310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1458078519396590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4decd8c4af3d9394b8df1f4be34ab4c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 2
+  PrefabShoot: {fileID: 0}
 --- !u!212 &212592476556674324
 SpriteRenderer:
   m_ObjectHideFlags: 1
