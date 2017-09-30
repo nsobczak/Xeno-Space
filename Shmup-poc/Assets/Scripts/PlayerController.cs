@@ -12,34 +12,32 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        //move
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position); //stay in screen
+        if (Input.GetKey(KeyCode.UpArrow) && screenPos.y < Screen.height)
         {
             transform.position += new Vector3(0, 3, 0) * Time.deltaTime * Speed;
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) && screenPos.x < Screen.width)
         {
             transform.position += new Vector3(3, 0, 0) * Time.deltaTime * Speed;
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) && screenPos.x > 0)
         {
             transform.position += new Vector3(-3, 0, 0) * Time.deltaTime * Speed;
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow) && screenPos.y > 0)
         {
             transform.position += new Vector3(0, -3, 0) * Time.deltaTime * Speed;
         }
 
+        //shoot
         m_shootTimer -= Time.deltaTime;
         if (Input.GetKey(KeyCode.Space))
         {
             if (m_shootTimer <= 0)
             {
                 GameObject shoot;
-//                float angle = Random.Range(-0.2f, 0.2f) + Mathf.PI / 2.0f;
-//                GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(0.2f, 0, 0), Quaternion.identity);
-//                shoot.GetComponent<ShootComponent>().Direction =
-//                    new Vector3(Mathf.Cos(angle), Mathf.Sin(angle)).normalized;
-//                shoot.GetComponent<ShootComponent>().Speed = Random.Range(4, 6);
 
                 shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(0.2f, 0, 0),
                     Quaternion.identity);
@@ -59,10 +57,5 @@ public class PlayerController : MonoBehaviour
                 m_shootTimer = 0.1f; //pour tirer toutes les 100ms
             }
         }
-    }
-
-    void Move(Vector3 direction)
-    {
-        transform.position += direction * Time.deltaTime * Speed;
     }
 }
