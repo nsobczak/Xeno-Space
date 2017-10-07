@@ -1,13 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public float Life = 10f;
+    public Slider HealthSlider;
     public float Speed = 2f;
     public GameObject PrefabShoot;
 
     private float _mShootTimer = 0.1f;
+
+
+    private void GameOver()
+    {
+        Debug.Log("Game Over");
+    }
 
     // Update is called once per frame
     void Update()
@@ -56,6 +65,21 @@ public class PlayerController : MonoBehaviour
 
                 _mShootTimer = 0.1f; //pour tirer toutes les 100ms
             }
+        }
+
+        //game over
+        if (Life <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.GetComponent<FoeShootComponent>())
+        {
+            Life -= 1;
+            HealthSlider.value = Life;
         }
     }
 }
