@@ -288,6 +288,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1747827936638840, guid: 849639dfabe4f6846810fd662402430e,
         type: 2}
+    - target: {fileID: 114403522113207970, guid: e297c2a621d6a4e68af3a5e69b0a87eb,
+        type: 2}
+      propertyPath: Speed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e297c2a621d6a4e68af3a5e69b0a87eb, type: 2}
   m_IsPrefabParent: 0
