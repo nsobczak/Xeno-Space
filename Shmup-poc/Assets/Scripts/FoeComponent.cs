@@ -7,8 +7,9 @@ public class FoeComponent : MonoBehaviour
     public float Life = 100f;
     public float Speed = 10f;
     public GameObject PrefabShoot;
+    public FoeGenerator FoeGenerator;
     
-    private float m_shootTimer = 0.5f;
+    private float _mShootTimer = 0.5f;
     private Vector3 _direction = new Vector3(-2f, -1f, 0);
 
     void Update()
@@ -16,14 +17,15 @@ public class FoeComponent : MonoBehaviour
         if (Life <= 0)
         {
             GameObject.Destroy(gameObject);
+            FoeGenerator.FoeNumber -= 1;
         }
         else
         {
             Move();
 
             //shoot
-            m_shootTimer -= Time.deltaTime;
-            if (m_shootTimer <= 0)
+            _mShootTimer -= Time.deltaTime;
+            if (_mShootTimer <= 0)
             {
                 GameObject shoot;
                 Vector3 shootOrigin = transform.position + new Vector3(0, 0, 1);
@@ -40,7 +42,7 @@ public class FoeComponent : MonoBehaviour
                     Quaternion.identity);
                 shoot.GetComponent<FoeShootComponent>().Direction = new Vector3(0, -1);
                
-                m_shootTimer = 0.5f; //pour tirer toutes les 100ms
+                _mShootTimer = 0.5f; //pour tirer toutes les 100ms
             }
         }
     }

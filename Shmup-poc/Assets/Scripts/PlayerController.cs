@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public float Speed = 2f;
     public GameObject PrefabShoot;
 
-    private float m_shootTimer = 0.1f;
+    private float _mShootTimer = 0.1f;
 
     // Update is called once per frame
     void Update()
@@ -32,10 +32,10 @@ public class PlayerController : MonoBehaviour
         }
 
         //shoot
-        m_shootTimer -= Time.deltaTime;
+        _mShootTimer -= Time.deltaTime;
         if (Input.GetKey(KeyCode.Space))
         {
-            if (m_shootTimer <= 0)
+            if (_mShootTimer <= 0)
             {
                 GameObject shoot;
 
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
                     Quaternion.identity);
                 shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(0, 1);
 
-                m_shootTimer = 0.1f; //pour tirer toutes les 100ms
+                _mShootTimer = 0.1f; //pour tirer toutes les 100ms
             }
         }
     }
