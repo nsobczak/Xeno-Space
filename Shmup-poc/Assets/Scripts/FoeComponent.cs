@@ -16,6 +16,7 @@ public class FoeComponent : MonoBehaviour
     {
         if (Life <= 0)
         {
+            PlayerController.Score += 100;
             GameObject.Destroy(gameObject);
             FoeGenerator.FoeNumber -= 1;
         }

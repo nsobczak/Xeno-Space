@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     public float Life = 10f;
     public Slider HealthSlider;
+    public static int Score = 0;
+    public Text ScoreText;
     public float Speed = 2f;
     public GameObject PrefabShoot;
 
@@ -67,6 +69,9 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        //update score
+        ScoreText.text = Score.ToString();
+        
         //game over
         if (Life <= 0)
         {
