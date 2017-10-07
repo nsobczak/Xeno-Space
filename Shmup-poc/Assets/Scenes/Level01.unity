@@ -193,24 +193,7 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 20755375328540844, guid: 849639dfabe4f6846810fd662402430e,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114893467786951612, guid: 849639dfabe4f6846810fd662402430e,
-        type: 2}
-      propertyPath: MainCamera
-      value: 
-      objectReference: {fileID: 1915501233}
-    - target: {fileID: 114893467786951612, guid: 849639dfabe4f6846810fd662402430e,
-        type: 2}
-      propertyPath: PrefabShoot
-      value: 
-      objectReference: {fileID: 1953640640085750, guid: 55145c707619fde46bc87a713b81b39b,
-        type: 2}
-    m_RemovedComponents:
-    - {fileID: 20755375328540844, guid: 849639dfabe4f6846810fd662402430e, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 849639dfabe4f6846810fd662402430e, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1915501229

@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
             {
                 GameObject shoot;
 
-                shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(0.2f, 0, 0),
+                shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(-0.2f, 0, 0),
                     Quaternion.identity);
                 shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(-1, 1).normalized;
 
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
                 shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(0.2f, 0, 0),
                     Quaternion.identity);
                 shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(0, 1);
-                shoot = GameObject.Instantiate(PrefabShoot, transform.position - new Vector3(0.2f, 0, 0),
+                shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(-0.2f, 0, 0),
                     Quaternion.identity);
                 shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(0, 1);
 

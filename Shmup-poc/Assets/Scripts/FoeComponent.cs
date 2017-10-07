@@ -9,7 +9,7 @@ public class FoeComponent : MonoBehaviour
     public GameObject PrefabShoot;
     
     private float m_shootTimer = 0.5f;
-    private Vector3 _direction = new Vector3(-2f, -1f, 1);
+    private Vector3 _direction = new Vector3(-2f, -1f, 0);
 
     void Update()
     {
@@ -26,16 +26,17 @@ public class FoeComponent : MonoBehaviour
             if (m_shootTimer <= 0)
             {
                 GameObject shoot;
+                Vector3 shootOrigin = transform.position + new Vector3(0, 0, 1);
                 
-                shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(-0.2f, 0, 0),
+                shoot = GameObject.Instantiate(PrefabShoot, shootOrigin + new Vector3(-0.4f, 0, 0),
                     Quaternion.identity);
                 shoot.GetComponent<FoeShootComponent>().Direction = new Vector3(-1, -1).normalized;
                 
-                shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(0.2f, 0, 0),
+                shoot = GameObject.Instantiate(PrefabShoot, shootOrigin + new Vector3(0.4f, 0, 0),
                     Quaternion.identity);
                 shoot.GetComponent<FoeShootComponent>().Direction = new Vector3(1, -1).normalized;
                 
-                shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(0, -0.2f, 0),
+                shoot = GameObject.Instantiate(PrefabShoot, shootOrigin + new Vector3(0, -0.6f, 0),
                     Quaternion.identity);
                 shoot.GetComponent<FoeShootComponent>().Direction = new Vector3(0, -1);
                
