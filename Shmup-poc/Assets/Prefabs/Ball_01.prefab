@@ -19,10 +19,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4345788828310324}
-  - component: {fileID: 114347235382605690}
+  - component: {fileID: 212845252134607236}
   - component: {fileID: 70713300260470708}
   - component: {fileID: 50905555139672828}
-  - component: {fileID: 212845252134607236}
+  - component: {fileID: 114347235382605690}
   m_Layer: 0
   m_Name: Ball_01
   m_TagString: Untagged
@@ -91,6 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 10
   Direction: {x: 0, y: 0, z: 0}
+  lifeTime: 2
 --- !u!212 &212845252134607236
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -100,6 +101,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -115,6 +117,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

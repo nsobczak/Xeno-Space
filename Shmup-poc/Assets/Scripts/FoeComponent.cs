@@ -5,8 +5,10 @@ using UnityEngine;
 public class FoeComponent : MonoBehaviour
 {
     public float Life = 100f;
-    public float Speed = 20f;
-
+    public float Speed = 10f;
+    public GameObject PrefabShoot;
+    
+    private float m_shootTimer = 0.5f;
     private Vector3 _direction = new Vector3(-2f, -1f, 1);
 
     void Update()
@@ -18,12 +20,33 @@ public class FoeComponent : MonoBehaviour
         else
         {
             Move();
+
+            //shoot
+            m_shootTimer -= Time.deltaTime;
+            if (m_shootTimer <= 0)
+            {
+                GameObject shoot;
+                
+                shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(-0.2f, 0, 0),
+                    Quaternion.identity);
+                shoot.GetComponent<FoeShootComponent>().Direction = new Vector3(-1, -1).normalized;
+                
+                shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(0.2f, 0, 0),
+                    Quaternion.identity);
+                shoot.GetComponent<FoeShootComponent>().Direction = new Vector3(1, -1).normalized;
+                
+                shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(0, -0.2f, 0),
+                    Quaternion.identity);
+                shoot.GetComponent<FoeShootComponent>().Direction = new Vector3(0, -1);
+               
+                m_shootTimer = 0.5f; //pour tirer toutes les 100ms
+            }
         }
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.GetComponent<ShootComponent>())
+        if (collider.gameObject.GetComponent<PlayerShootComponent>())
             Life -= 1;
     }
 
