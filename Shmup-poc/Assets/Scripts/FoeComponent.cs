@@ -8,9 +8,15 @@ public class FoeComponent : MonoBehaviour
     public float Speed = 10f;
     public GameObject PrefabShoot;
     public FoeGenerator FoeGenerator;
-    
+
     private float _mShootTimer = 0.5f;
-    private Vector3 _direction = new Vector3(-2f, -1f, 0);
+    private Vector3 _direction;
+
+    void Start()
+    {
+        //appear with random direction
+        _direction = new Vector3(Random.Range(-2f, 2f), Random.Range(-1.5f, -0.5f), 0);
+    }
 
     void Update()
     {
@@ -30,19 +36,19 @@ public class FoeComponent : MonoBehaviour
             {
                 GameObject shoot;
                 Vector3 shootOrigin = transform.position + new Vector3(0, 0, 1);
-                
+
                 shoot = GameObject.Instantiate(PrefabShoot, shootOrigin + new Vector3(-0.4f, 0, 0),
                     Quaternion.identity);
                 shoot.GetComponent<FoeShootComponent>().Direction = new Vector3(-1, -1).normalized;
-                
+
                 shoot = GameObject.Instantiate(PrefabShoot, shootOrigin + new Vector3(0.4f, 0, 0),
                     Quaternion.identity);
                 shoot.GetComponent<FoeShootComponent>().Direction = new Vector3(1, -1).normalized;
-                
+
                 shoot = GameObject.Instantiate(PrefabShoot, shootOrigin + new Vector3(0, -0.6f, 0),
                     Quaternion.identity);
                 shoot.GetComponent<FoeShootComponent>().Direction = new Vector3(0, -1);
-               
+
                 _mShootTimer = 0.5f; //pour tirer toutes les 100ms
             }
         }
@@ -51,7 +57,7 @@ public class FoeComponent : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.GetComponent<PlayerShootComponent>())
-            Life -= 1;
+            Life -= 2;
     }
 
     void Move()
@@ -60,12 +66,13 @@ public class FoeComponent : MonoBehaviour
 
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
 
-        if (screenPos.x <= 0 || screenPos.x >= Screen.width || screenPos.y <= Screen.height/3 || screenPos.y >= Screen.height)
+        if (screenPos.x <= 0 || screenPos.x >= Screen.width || screenPos.y <= Screen.height / 3 ||
+            screenPos.y >= Screen.height)
         {
             float angle = Random.Range(-1f, 1f);
             if (screenPos.x >= Screen.width)
                 angle += Mathf.PI;
-            if (screenPos.y <= Screen.height/3)
+            if (screenPos.y <= Screen.height / 3)
                 angle += Mathf.PI / 2.0f;
             else if (screenPos.y >= Screen.height)
                 angle -= Mathf.PI / 2.0f;
