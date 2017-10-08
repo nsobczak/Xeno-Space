@@ -9,6 +9,7 @@ public class FoeComponent : MonoBehaviour
     public GameObject PrefabShoot;
     public FoeGenerator FoeGenerator;
 
+    private int pointGiven = 100;
     private float _mShootTimer = 0.5f;
     private Vector3 _direction;
 
@@ -22,7 +23,7 @@ public class FoeComponent : MonoBehaviour
     {
         if (Life <= 0)
         {
-            PlayerController.Score += 100;
+            PlayerController.Score += pointGiven;
             GameObject.Destroy(gameObject);
             FoeGenerator.FoeNumber -= 1;
         }

@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public int MainMenu = 0;
     public float Life = 10f;
     public Slider HealthSlider;
     public static int Score = 0;
@@ -18,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private void GameOver()
     {
         Debug.Log("Game Over");
+        SceneManager.LoadScene(MainMenu);
     }
 
     // Update is called once per frame
@@ -71,7 +74,7 @@ public class PlayerController : MonoBehaviour
 
         //update score
         ScoreText.text = Score.ToString();
-        
+
         //game over
         if (Life <= 0)
         {

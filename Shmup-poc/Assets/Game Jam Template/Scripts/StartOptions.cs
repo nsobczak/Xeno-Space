@@ -45,6 +45,7 @@ public class StartOptions : MonoBehaviour
         playMusic = GetComponent<PlayMusic>();
 
         changeScenes = true;
+        changeMusicOnStart = true; 
     }
 
 

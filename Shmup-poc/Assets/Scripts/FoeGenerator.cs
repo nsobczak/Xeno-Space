@@ -11,6 +11,7 @@ public class FoeGenerator : MonoBehaviour
     public static int MaxFoeNumber = 1;
 
     private Vector3 _direction = new Vector3(-1f, 0, 0);
+    private int addFoePitch = 5;
 
     void Update()
     {
@@ -30,6 +31,6 @@ public class FoeGenerator : MonoBehaviour
 
         //Add MaxFoeNumber with points
         int foeKilled = PlayerController.Score / 100;
-        MaxFoeNumber = foeKilled / 6 + 1;
+        MaxFoeNumber = foeKilled / addFoePitch + 1;
     }
 }
