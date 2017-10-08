@@ -60,12 +60,12 @@ public class FoeComponent : MonoBehaviour
 
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
 
-        if (screenPos.x <= 0 || screenPos.x >= Screen.width || screenPos.y <= Screen.height/4 || screenPos.y >= Screen.height)
+        if (screenPos.x <= 0 || screenPos.x >= Screen.width || screenPos.y <= Screen.height/3 || screenPos.y >= Screen.height)
         {
-            float angle = Random.Range(-0.5f, 0.5f);
+            float angle = Random.Range(-1f, 1f);
             if (screenPos.x >= Screen.width)
                 angle += Mathf.PI;
-            if (screenPos.y <= Screen.height/4)
+            if (screenPos.y <= Screen.height/3)
                 angle += Mathf.PI / 2.0f;
             else if (screenPos.y >= Screen.height)
                 angle -= Mathf.PI / 2.0f;

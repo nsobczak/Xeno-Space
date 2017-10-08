@@ -17,7 +17,8 @@ public class FoeGenerator : MonoBehaviour
         //Generate
         if (FoeNumber < MaxFoeNumber)
         {
-            GameObject.Instantiate(PrefabFoe, transform.position, Quaternion.Euler(0, 0, 180));
+            Vector3 position = new Vector3(transform.position.x, transform.position.y, 0);
+            GameObject.Instantiate(PrefabFoe, position, Quaternion.Euler(0, 0, 180));
             FoeNumber += 1;
         }
 
@@ -26,5 +27,9 @@ public class FoeGenerator : MonoBehaviour
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
         if (screenPos.x <= 0 + Screen.width / 4 || screenPos.x >= Screen.width - Screen.width / 4)
             _direction *= -1;
+
+        //Add MaxFoeNumber with points
+        int foeKilled = PlayerController.Score / 100;
+        MaxFoeNumber = foeKilled / 6 + 1;
     }
 }
