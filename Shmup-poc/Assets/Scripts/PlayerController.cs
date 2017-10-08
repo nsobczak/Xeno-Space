@@ -89,5 +89,10 @@ public class PlayerController : MonoBehaviour
             Life -= 1;
             HealthSlider.value = Life;
         }
+        if (collider.gameObject.GetComponent<FoeComponent>())
+        {
+            Life -= 10;
+            HealthSlider.value = Life;
+        }
     }
 }
