@@ -13,6 +13,27 @@ public class FoeComponent : MonoBehaviour
     private float _mShootTimer = 0.5f;
     private Vector3 _direction;
 
+
+    void Move()
+    {
+        transform.position += _direction * Time.deltaTime * Speed;
+
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+
+        if (screenPos.x <= 0 || screenPos.x >= Screen.width || screenPos.y <= Screen.height / 3 ||
+            screenPos.y >= Screen.height)
+        {
+            float angle = Random.Range(-1f, 1f);
+            if (screenPos.x >= Screen.width)
+                angle += Mathf.PI;
+            if (screenPos.y <= Screen.height / 3)
+                angle += Mathf.PI / 2.0f;
+            else if (screenPos.y >= Screen.height)
+                angle -= Mathf.PI / 2.0f;
+            _direction = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * Speed;
+        }
+    }
+
     void Start()
     {
         //appear with random direction
@@ -59,25 +80,5 @@ public class FoeComponent : MonoBehaviour
     {
         if (collider.gameObject.GetComponent<PlayerShootComponent>())
             Life -= 2;
-    }
-
-    void Move()
-    {
-        transform.position += _direction * Time.deltaTime * Speed;
-
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
-
-        if (screenPos.x <= 0 || screenPos.x >= Screen.width || screenPos.y <= Screen.height / 3 ||
-            screenPos.y >= Screen.height)
-        {
-            float angle = Random.Range(-1f, 1f);
-            if (screenPos.x >= Screen.width)
-                angle += Mathf.PI;
-            if (screenPos.y <= Screen.height / 3)
-                angle += Mathf.PI / 2.0f;
-            else if (screenPos.y >= Screen.height)
-                angle -= Mathf.PI / 2.0f;
-            _direction = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * Speed;
-        }
     }
 }

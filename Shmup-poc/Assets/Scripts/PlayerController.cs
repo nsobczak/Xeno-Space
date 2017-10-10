@@ -94,5 +94,10 @@ public class PlayerController : MonoBehaviour
             Life -= 10;
             HealthSlider.value = Life;
         }
+        if (collider.gameObject.CompareTag("Meteorite"))
+        {
+            Life -= 4;
+            HealthSlider.value = Life;
+        }
     }
 }
