@@ -7,6 +7,7 @@ public class MeteoriteScript : MonoBehaviour
     public float Life = 10f;
     public float Speed = 3f;
 
+    private int pointGiven = 3;
     private Vector3 _direction;
     private float _rotation;
 
@@ -21,6 +22,7 @@ public class MeteoriteScript : MonoBehaviour
     {
         if (Life <= 0)
         {
+            PlayerController.Score += pointGiven;
             GameObject.Destroy(gameObject);
             MeteoriteGenerator.MeteoriteNumber -= 1;
         }
