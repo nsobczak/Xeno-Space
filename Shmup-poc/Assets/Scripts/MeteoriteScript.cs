@@ -34,7 +34,8 @@ public class MeteoriteScript : MonoBehaviour
 
             Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
 
-            if (screenPos.x <= -_offsetDestruction || screenPos.x >= Screen.width + _offsetDestruction || screenPos.y <= -_offsetDestruction)
+            if (screenPos.x <= -_offsetDestruction || screenPos.x >= Screen.width + _offsetDestruction ||
+                screenPos.y <= -_offsetDestruction)
             {
                 GameObject.Destroy(gameObject);
                 MeteoriteGenerator.MeteoriteNumber -= 1;

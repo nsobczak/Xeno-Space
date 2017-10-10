@@ -7,11 +7,12 @@ public class FoeComponent : MonoBehaviour
     public float Life = 100f;
     public float Speed = 10f;
     public GameObject PrefabShoot;
-    public FoeGenerator FoeGenerator;
+    public GameObject PlayerControllerGameObject;
 
     private int pointGiven = 100;
     private float _mShootTimer = 0.5f;
     private Vector3 _direction;
+    private GameObject[] _prefabSwitchShootList;
 
 
     void Move()
@@ -38,6 +39,7 @@ public class FoeComponent : MonoBehaviour
     {
         //appear with random direction
         _direction = new Vector3(Random.Range(-2f, 2f), Random.Range(-1.5f, -0.5f), 0);
+        _prefabSwitchShootList = PlayerControllerGameObject.GetComponent<PlayerController>().PrefabSwitchShootList;
     }
 
     void Update()
@@ -47,6 +49,14 @@ public class FoeComponent : MonoBehaviour
             PlayerController.Score += pointGiven;
             GameObject.Destroy(gameObject);
             FoeGenerator.FoeNumber -= 1;
+            int shootSwitchProbability = Random.Range(0, _prefabSwitchShootList.Length * 2);
+            Debug.Log(shootSwitchProbability);
+            Debug.Log(_prefabSwitchShootList.Length);
+            if (shootSwitchProbability < _prefabSwitchShootList.Length)
+            {
+                Vector3 position = new Vector3(transform.position.x, transform.position.y, 1);
+                GameObject.Instantiate(_prefabSwitchShootList[shootSwitchProbability], position, Quaternion.identity);
+            }
         }
         else
         {

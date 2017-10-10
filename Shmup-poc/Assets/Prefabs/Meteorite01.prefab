@@ -165,6 +165,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Life: 30
   Speed: 1.5
+  PlayerControllerGameObject: {fileID: 1458078519396590, guid: 7ec4e6851bb963245807a85474598dd4,
+    type: 2}
 --- !u!212 &212298760113674534
 SpriteRenderer:
   m_ObjectHideFlags: 1

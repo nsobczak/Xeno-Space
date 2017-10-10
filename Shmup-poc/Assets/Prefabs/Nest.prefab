@@ -52,7 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cbd4dd31a920424fb3c31787da27913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PrefabFoe: {fileID: 0}
+  PrefabFoe: {fileID: 1747827936638840, guid: 849639dfabe4f6846810fd662402430e, type: 2}
+  Speed: 1
 --- !u!212 &212247685498454658
 SpriteRenderer:
   m_ObjectHideFlags: 1

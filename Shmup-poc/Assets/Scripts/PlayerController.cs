@@ -6,22 +6,22 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public int MainMenu = 0;
+    public int MainMenuId = 0;
     public float Life = 10f;
     public Slider HealthSlider;
     public static int Score = 0;
     public Text ScoreText;
     public float Speed = 2f;
     public GameObject[] PrefabShootList;
+    public GameObject[] PrefabSwitchShootList;
 
     private GameObject _prefabShoot;
     private float _mShootTimer = 0.1f;
 
-
     private void GameOver()
     {
         Debug.Log("Game Over");
-        SceneManager.LoadScene(MainMenu);
+        SceneManager.LoadScene(MainMenuId);
     }
 
     void Start()
@@ -104,11 +104,13 @@ public class PlayerController : MonoBehaviour
             Life -= 4;
             HealthSlider.value = Life;
         }
-        if (collider.gameObject.name == "ShootSwitchCapsule01")
+        if (collider.gameObject.name == "ShootSwitchCapsule01" ||
+            collider.gameObject.name == "ShootSwitchCapsule01(Clone)")
         {
             _prefabShoot = PrefabShootList[0];
         }
-        if (collider.gameObject.name == "ShootSwitchCapsule03")
+        if (collider.gameObject.name == "ShootSwitchCapsule03" ||
+            collider.gameObject.name == "ShootSwitchCapsule03(Clone)")
         {
             _prefabShoot = PrefabShootList[PrefabShootList.Length - 1];
         }

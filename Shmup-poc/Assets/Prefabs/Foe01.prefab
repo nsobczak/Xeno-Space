@@ -37,8 +37,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1747827936638840}
   m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.25, z: 1}
+  m_LocalPosition: {x: -1.378, y: 1.634, z: 0}
+  m_LocalScale: {x: 0.25321412, y: 0.21605909, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -92,6 +92,8 @@ MonoBehaviour:
   Life: 100
   Speed: 2
   PrefabShoot: {fileID: 1953640640085750, guid: 55145c707619fde46bc87a713b81b39b,
+    type: 2}
+  PlayerControllerGameObject: {fileID: 1458078519396590, guid: 7ec4e6851bb963245807a85474598dd4,
     type: 2}
 --- !u!212 &212769833272269184
 SpriteRenderer:
