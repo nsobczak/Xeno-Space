@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212587908332552748}
   - component: {fileID: 50089385791972922}
   - component: {fileID: 70192245753004642}
+  - component: {fileID: 114789522259099118}
   m_Layer: 0
   m_Name: ShootSwitchCapsule03
   m_TagString: Untagged
@@ -77,6 +78,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2.1399999, y: 5.4000006}
   m_Direction: 0
+--- !u!114 &114789522259099118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1434122825488458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f20b3537f52b04b898ad83b8ab48e050, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212587908332552748
 SpriteRenderer:
   m_ObjectHideFlags: 1

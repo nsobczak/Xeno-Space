@@ -10,12 +10,13 @@ public class MeteoriteScript : MonoBehaviour
     private int pointGiven = 3;
     private Vector3 _direction;
     private float _rotation;
+    private float _offsetDestruction = 50f;
 
     void Start()
     {
         //appear with random direction
         _direction = new Vector3(Random.Range(-1f, 1f), Random.Range(-1.5f, -0.5f), 0);
-        _rotation = Random.Range(-10f, 10f);
+        _rotation = Random.Range(-8f, 8f);
     }
 
     void Update()
@@ -33,7 +34,7 @@ public class MeteoriteScript : MonoBehaviour
 
             Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
 
-            if (screenPos.x <= 0 || screenPos.x >= Screen.width || screenPos.y <= 0)
+            if (screenPos.x <= -_offsetDestruction || screenPos.x >= Screen.width + _offsetDestruction || screenPos.y <= -_offsetDestruction)
             {
                 GameObject.Destroy(gameObject);
                 MeteoriteGenerator.MeteoriteNumber -= 1;

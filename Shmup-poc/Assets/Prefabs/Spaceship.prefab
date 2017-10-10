@@ -89,11 +89,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4decd8c4af3d9394b8df1f4be34ab4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainMenu: 0
   Life: 100
   HealthSlider: {fileID: 0}
+  ScoreText: {fileID: 0}
   Speed: 2
-  PrefabShoot: {fileID: 1864150573901220, guid: 859d5719270779441bb1fa630b6b0b48,
-    type: 2}
+  PrefabShootList:
+  - {fileID: 1864150573901220, guid: 859d5719270779441bb1fa630b6b0b48, type: 2}
+  - {fileID: 1677356478390896, guid: ab71a54cc44ac6c4abf1b05589b15bb2, type: 2}
 --- !u!212 &212592476556674324
 SpriteRenderer:
   m_ObjectHideFlags: 1

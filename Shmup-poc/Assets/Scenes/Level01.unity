@@ -184,7 +184,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4327666233263800, guid: 0f8108b034b6a46628edf062cca5034c, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114151203692159130, guid: 0f8108b034b6a46628edf062cca5034c,
         type: 2}
@@ -611,6 +611,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114495790042703310, guid: 7ec4e6851bb963245807a85474598dd4,
+        type: 2}
+      propertyPath: PrefabShootList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4653469325523376, guid: 7ec4e6851bb963245807a85474598dd4, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -641,7 +646,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4653469325523376, guid: 7ec4e6851bb963245807a85474598dd4, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114495790042703310, guid: 7ec4e6851bb963245807a85474598dd4,
         type: 2}
@@ -1153,7 +1158,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1965534388
 GameObject:

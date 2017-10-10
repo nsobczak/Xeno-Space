@@ -12,8 +12,9 @@ public class PlayerController : MonoBehaviour
     public static int Score = 0;
     public Text ScoreText;
     public float Speed = 2f;
-    public GameObject PrefabShoot;
+    public GameObject[] PrefabShootList;
 
+    private GameObject _prefabShoot;
     private float _mShootTimer = 0.1f;
 
 
@@ -23,7 +24,11 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene(MainMenu);
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        _prefabShoot = PrefabShootList[0];
+    }
+
     void Update()
     {
         //move
@@ -53,18 +58,18 @@ public class PlayerController : MonoBehaviour
             {
                 GameObject shoot;
 
-                shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(-0.2f, 0, 0),
+                shoot = GameObject.Instantiate(_prefabShoot, transform.position + new Vector3(-0.2f, 0, 0),
                     Quaternion.identity);
                 shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(-1, 1).normalized;
 
-                shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(0.2f, 0, 0),
+                shoot = GameObject.Instantiate(_prefabShoot, transform.position + new Vector3(0.2f, 0, 0),
                     Quaternion.identity);
                 shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(1, 1).normalized;
 
-                shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(0.2f, 0, 0),
+                shoot = GameObject.Instantiate(_prefabShoot, transform.position + new Vector3(0.2f, 0, 0),
                     Quaternion.identity);
                 shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(0, 1);
-                shoot = GameObject.Instantiate(PrefabShoot, transform.position + new Vector3(-0.2f, 0, 0),
+                shoot = GameObject.Instantiate(_prefabShoot, transform.position + new Vector3(-0.2f, 0, 0),
                     Quaternion.identity);
                 shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(0, 1);
 
@@ -98,6 +103,14 @@ public class PlayerController : MonoBehaviour
         {
             Life -= 4;
             HealthSlider.value = Life;
+        }
+        if (collider.gameObject.name == "ShootSwitchCapsule01")
+        {
+            _prefabShoot = PrefabShootList[0];
+        }
+        if (collider.gameObject.name == "ShootSwitchCapsule03")
+        {
+            _prefabShoot = PrefabShootList[PrefabShootList.Length - 1];
         }
     }
 }
