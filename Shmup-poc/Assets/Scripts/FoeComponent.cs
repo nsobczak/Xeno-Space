@@ -50,8 +50,6 @@ public class FoeComponent : MonoBehaviour
             GameObject.Destroy(gameObject);
             FoeGenerator.FoeNumber -= 1;
             int shootSwitchProbability = Random.Range(0, _prefabSwitchShootList.Length * 2);
-            Debug.Log(shootSwitchProbability);
-            Debug.Log(_prefabSwitchShootList.Length);
             if (shootSwitchProbability < _prefabSwitchShootList.Length)
             {
                 Vector3 position = new Vector3(transform.position.x, transform.position.y, 1);

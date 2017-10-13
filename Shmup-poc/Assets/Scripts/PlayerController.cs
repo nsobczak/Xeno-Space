@@ -29,10 +29,37 @@ public class PlayerController : MonoBehaviour
         _prefabShoot = PrefabShootList[0];
     }
 
+    private void Shoot()
+    {
+        if (_mShootTimer <= 0)
+        {
+            GameObject shoot;
+
+            shoot = GameObject.Instantiate(_prefabShoot, transform.position + new Vector3(-0.2f, 0, 0),
+                Quaternion.identity);
+            shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(-1, 1).normalized;
+
+            shoot = GameObject.Instantiate(_prefabShoot, transform.position + new Vector3(0.2f, 0, 0),
+                Quaternion.identity);
+            shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(1, 1).normalized;
+
+            shoot = GameObject.Instantiate(_prefabShoot, transform.position + new Vector3(0.2f, 0, 0),
+                Quaternion.identity);
+            shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(0, 1);
+            shoot = GameObject.Instantiate(_prefabShoot, transform.position + new Vector3(-0.2f, 0, 0),
+                Quaternion.identity);
+            shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(0, 1);
+
+            _mShootTimer = 0.1f; //pour tirer toutes les 100ms
+        }
+    }
+
     void Update()
     {
-        //move
+        _mShootTimer -= Time.deltaTime;
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position); //stay in screen
+
+#if UNITY_STANDALONE || UNITY_WEBPLAYER //move
         if (Input.GetKey(KeyCode.UpArrow) && screenPos.y < Screen.height)
         {
             transform.position += new Vector3(0, 3, 0) * Time.deltaTime * Speed;
@@ -49,33 +76,47 @@ public class PlayerController : MonoBehaviour
         {
             transform.position += new Vector3(0, -3, 0) * Time.deltaTime * Speed;
         }
-
         //shoot
-        _mShootTimer -= Time.deltaTime;
         if (Input.GetKey(KeyCode.Space))
         {
-            if (_mShootTimer <= 0)
+            Shoot();
+        }
+    
+        #elif UNITY_ANDROID
+
+        if (Input.touchCount > 0 || Input.GetMouseButton(0))
+        {
+            Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
+            Vector3 touch;
+            if (Input.touchCount > 0)
+                touch = Input.touches[0].position;
+            else
+                touch = Input.mousePosition;
+
+            //right
+            if (touch.x > screenPosition.x && screenPos.x < Screen.width)
             {
-                GameObject shoot;
-
-                shoot = GameObject.Instantiate(_prefabShoot, transform.position + new Vector3(-0.2f, 0, 0),
-                    Quaternion.identity);
-                shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(-1, 1).normalized;
-
-                shoot = GameObject.Instantiate(_prefabShoot, transform.position + new Vector3(0.2f, 0, 0),
-                    Quaternion.identity);
-                shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(1, 1).normalized;
-
-                shoot = GameObject.Instantiate(_prefabShoot, transform.position + new Vector3(0.2f, 0, 0),
-                    Quaternion.identity);
-                shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(0, 1);
-                shoot = GameObject.Instantiate(_prefabShoot, transform.position + new Vector3(-0.2f, 0, 0),
-                    Quaternion.identity);
-                shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(0, 1);
-
-                _mShootTimer = 0.1f; //pour tirer toutes les 100ms
+                transform.position += new Vector3(3, 0, 0) * Time.deltaTime * Speed;
+            }
+            //left
+            if (touch.x < screenPosition.x && screenPos.x > 0)
+            {
+                transform.position += new Vector3(-3, 0, 0) * Time.deltaTime * Speed;
+            }
+            //down
+            if (touch.y < screenPosition.y && screenPos.y > 0)
+            {
+                transform.position += new Vector3(0, -3, 0) * Time.deltaTime * Speed;
+            }
+            //up
+            if (touch.y > screenPosition.y && screenPos.y < Screen.height)
+            {
+                transform.position += new Vector3(0, 3, 0) * Time.deltaTime * Speed;
             }
         }
+        Shoot();
+
+#endif
 
         //update score
         ScoreText.text = Score.ToString();
@@ -86,6 +127,7 @@ public class PlayerController : MonoBehaviour
             GameOver();
         }
     }
+
 
     void OnTriggerEnter2D(Collider2D collider)
     {
