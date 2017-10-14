@@ -45,3 +45,4 @@ ehthumbs.db
 Thumbs.db
 
 /Packages/
+*.keystore
