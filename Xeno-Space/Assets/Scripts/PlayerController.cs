@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public int MainMenuId = 0;
     public float Life = 10f;
     public Slider HealthSlider;
-    public static int Score = 0;
+    public static int Score;
     public Text ScoreText;
     public float Speed = 2f;
     public GameObject[] PrefabShootList;
@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        Score = 0;
         _prefabShoot = PrefabShootList[0];
     }
 
