@@ -6,11 +6,17 @@ public class MeteoriteGenerator : MonoBehaviour
 {
     public GameObject[] PrefabMeteoriteList;
 
-    public static int MeteoriteNumber = 0;
-    public static int MaxMeteoriteNumber = 3;
+    public static int MeteoriteNumber;
+    public static int MaxMeteoriteNumber;
 
     private float _spawnTimer = 1.5f;
 
+    private void Start()
+    {
+        MeteoriteNumber = 0;
+        MaxMeteoriteNumber = 3;
+    }
+    
     void Update()
     {
         _spawnTimer -= Time.deltaTime;
