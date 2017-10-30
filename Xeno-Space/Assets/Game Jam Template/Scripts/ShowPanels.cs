@@ -14,11 +14,8 @@ public class ShowPanels : MonoBehaviour
 
     public static bool IsGameFinished = false;
 
-    private StartOptions startScript; //Reference to the StartButton script
-
     private void Start()
     {
-        startScript = GetComponent<StartOptions>();
         if (IsGameFinished)
         {
             IsGameFinished = false;
@@ -93,7 +90,7 @@ public class ShowPanels : MonoBehaviour
     public void FromPauseToMenu()
     {
         ShowPanels.IsGameFinished = true;
-        startScript.inMainMenu = true;
+        StartOptions.inMainMenu = true;
         SceneManager.LoadScene(MainMenuId);
     }
 }

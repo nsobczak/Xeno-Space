@@ -143,7 +143,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.Sobczak.XenoSpace
   buildNumber: {}
-  AndroidBundleVersionCode: 1
+  AndroidBundleVersionCode: 10600
   AndroidMinSdkVersion: 16
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1

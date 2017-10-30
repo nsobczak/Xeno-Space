@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public void GameOver()
     {
         ShowPanels.IsGameFinished = true;
+        StartOptions.inMainMenu = true;
         SceneManager.LoadScene(MainMenuId);
     }
 
