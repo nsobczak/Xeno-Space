@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameOverTimer : MonoBehaviour
+public class GameOverScore : MonoBehaviour
 {
-    private Text _textScore;
+    private Text _textTime;
 
     // Use this for initialization
     void Start()
     {
-        _textScore = GetComponent<Text>();
-        _textScore.text = TimerScript.Timer;
+        _textTime = GetComponent<Text>();
+        _textTime.text = PlayerController.Score.ToString();
     }
 }

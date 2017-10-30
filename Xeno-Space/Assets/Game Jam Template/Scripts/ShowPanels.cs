@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class ShowPanels : MonoBehaviour
 {
+    public int MainMenuId = 0;
     public GameObject optionsPanel; //Store a reference to the Game Object OptionsPanel 
     public GameObject optionsTint; //Store a reference to the Game Object OptionsTint 
     public GameObject menuPanel; //Store a reference to the Game Object MenuPanel 
@@ -12,8 +14,11 @@ public class ShowPanels : MonoBehaviour
 
     public static bool IsGameFinished = false;
 
+    private StartOptions startScript; //Reference to the StartButton script
+
     private void Start()
     {
+        startScript = GetComponent<StartOptions>();
         if (IsGameFinished)
         {
             IsGameFinished = false;
@@ -67,12 +72,12 @@ public class ShowPanels : MonoBehaviour
         optionsTint.SetActive(true);
     }
 
-	public void HideGameOverPanel()
-	{
-		gameOverPanel.SetActive (false);
-		optionsTint.SetActive(false);
-	}
-    
+    public void HideGameOverPanel()
+    {
+        gameOverPanel.SetActive(false);
+        optionsTint.SetActive(false);
+    }
+
     public void ShowCreditsPanel()
     {
         creditsPanel.SetActive(true);
@@ -81,9 +86,14 @@ public class ShowPanels : MonoBehaviour
 
     public void HideCreditsPanel()
     {
-        creditsPanel.SetActive (false);
+        creditsPanel.SetActive(false);
         optionsTint.SetActive(false);
     }
-    
-    
+
+    public void FromPauseToMenu()
+    {
+        ShowPanels.IsGameFinished = true;
+        startScript.inMainMenu = true;
+        SceneManager.LoadScene(MainMenuId);
+    }
 }

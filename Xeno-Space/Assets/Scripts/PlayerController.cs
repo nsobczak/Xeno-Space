@@ -18,9 +18,8 @@ public class PlayerController : MonoBehaviour
     private GameObject _prefabShoot;
     private float _mShootTimer = 0.1f;
 
-    private void GameOver()
+    public void GameOver()
     {
-        Debug.Log("Game Over");
         ShowPanels.IsGameFinished = true;
         SceneManager.LoadScene(MainMenuId);
     }
