@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FoeComponent : MonoBehaviour
 {
-    public float Life = 100f;
+    public float Life = 80f;
     public float Speed = 10f;
     public GameObject PrefabShoot;
     public GameObject PlayerControllerGameObject;
@@ -87,6 +87,14 @@ public class FoeComponent : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.GetComponent<PlayerShootComponent>())
-            Life -= 2;
+        {
+            PlayerShootComponent shootComponent = collider.gameObject.GetComponent<PlayerShootComponent>();
+            if (shootComponent.name == "Ball_01" ||
+                shootComponent.name == "Ball_01(Clone)")
+                Life -= 2;
+            if (shootComponent.name == "Ball_03" ||
+                shootComponent.name == "Ball_03(Clone)")
+                Life -= 4;
+        }
     }
 }

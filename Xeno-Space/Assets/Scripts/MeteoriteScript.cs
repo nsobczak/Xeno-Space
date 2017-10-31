@@ -46,6 +46,14 @@ public class MeteoriteScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.GetComponent<PlayerShootComponent>())
-            Life -= 1;
+        {
+            PlayerShootComponent shootComponent = collider.gameObject.GetComponent<PlayerShootComponent>();
+            if (shootComponent.name == "Ball_01" ||
+                shootComponent.name == "Ball_01(Clone)")
+                Life -= 1;
+            if (shootComponent.name == "Ball_03" ||
+                shootComponent.name == "Ball_03(Clone)")
+                Life -= 2;
+        }
     }
 }
