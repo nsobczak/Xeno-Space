@@ -6,12 +6,19 @@ public class FoeGenerator : MonoBehaviour
 {
     public GameObject PrefabFoe;
     public float Speed = 1f;
+    public int MaxFoeNumberLimit = 6;
 
-    public static int FoeNumber = 0;
-    public static int MaxFoeNumber = 1;
+    public static int FoeNumber;
+    public static int MaxFoeNumber;
 
     private Vector3 _direction = new Vector3(-1f, 0, 0);
     private int addFoePitch = 5;
+
+    private void Start()
+    {
+        FoeNumber = 0;
+        MaxFoeNumber = 1;
+    }
 
     void Update()
     {
@@ -30,7 +37,10 @@ public class FoeGenerator : MonoBehaviour
             _direction *= -1;
 
         //Add MaxFoeNumber with points
-        int foeKilled = PlayerController.Score / 100;
-        MaxFoeNumber = foeKilled / addFoePitch + 1;
+        if (MaxFoeNumber < MaxFoeNumberLimit)
+        {
+            int foeKilled = PlayerController.Score / 100;
+            MaxFoeNumber = foeKilled / addFoePitch + 1;
+        }
     }
 }

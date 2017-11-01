@@ -15,7 +15,7 @@ public class StartOptions : MonoBehaviour
 
 
     [HideInInspector]
-    public bool inMainMenu = true
+    public static bool inMainMenu = true
         ; //If true, pause button disabled in main menu (Cancel in input manager, default escape key)
 
     [HideInInspector]
@@ -34,12 +34,13 @@ public class StartOptions : MonoBehaviour
         ; //Very short fade time (10 milliseconds) to start playing music immediately without a click/glitch
 
     private ShowPanels showPanels; //Reference to ShowPanels script on UI GameObject, to show and hide panels
-
+    private Pause pauseScript; 
 
     void Awake()
     {
         //Get a reference to ShowPanels attached to UI object
         showPanels = GetComponent<ShowPanels>();
+        pauseScript = GetComponent<Pause>();
 
         //Get a reference to PlayMusic attached to UI object
         playMusic = GetComponent<PlayMusic>();
@@ -48,6 +49,13 @@ public class StartOptions : MonoBehaviour
         changeMusicOnStart = true; 
     }
 
+    private void Update()
+    {
+        if (inMainMenu)
+        {
+            pauseScript.UnPause();
+        }
+    }
 
     public void StartButtonClicked()
     {

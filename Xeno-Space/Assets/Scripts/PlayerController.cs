@@ -9,23 +9,26 @@ public class PlayerController : MonoBehaviour
     public int MainMenuId = 0;
     public float Life = 10f;
     public Slider HealthSlider;
-    public static int Score = 0;
+    public static int Score;
     public Text ScoreText;
     public float Speed = 2f;
     public GameObject[] PrefabShootList;
     public GameObject[] PrefabSwitchShootList;
+    public int PointGivenBySwitchShoot = 1;
 
     private GameObject _prefabShoot;
     private float _mShootTimer = 0.1f;
 
-    private void GameOver()
+    public void GameOver()
     {
-        Debug.Log("Game Over");
+        ShowPanels.IsGameFinished = true;
+        StartOptions.inMainMenu = true;
         SceneManager.LoadScene(MainMenuId);
     }
 
     void Start()
     {
+        Score = 0;
         _prefabShoot = PrefabShootList[0];
     }
 
@@ -35,13 +38,16 @@ public class PlayerController : MonoBehaviour
         {
             GameObject shoot;
 
-            shoot = GameObject.Instantiate(_prefabShoot, transform.position + new Vector3(-0.2f, 0, 0),
-                Quaternion.identity);
-            shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(-1, 1).normalized;
+            if (_prefabShoot == PrefabShootList[0])
+            {
+                shoot = GameObject.Instantiate(_prefabShoot, transform.position + new Vector3(-0.2f, 0, 0),
+                    Quaternion.identity);
+                shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(-1, 1).normalized;
 
-            shoot = GameObject.Instantiate(_prefabShoot, transform.position + new Vector3(0.2f, 0, 0),
-                Quaternion.identity);
-            shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(1, 1).normalized;
+                shoot = GameObject.Instantiate(_prefabShoot, transform.position + new Vector3(0.2f, 0, 0),
+                    Quaternion.identity);
+                shoot.GetComponent<PlayerShootComponent>().Direction = new Vector3(1, 1).normalized;
+            }
 
             shoot = GameObject.Instantiate(_prefabShoot, transform.position + new Vector3(0.2f, 0, 0),
                 Quaternion.identity);
@@ -133,7 +139,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collider.gameObject.GetComponent<FoeShootComponent>())
         {
-            Life -= 1;
+            Life -= 2;
             HealthSlider.value = Life;
         }
         if (collider.gameObject.GetComponent<FoeComponent>())
@@ -143,18 +149,20 @@ public class PlayerController : MonoBehaviour
         }
         if (collider.gameObject.CompareTag("Meteorite"))
         {
-            Life -= 4;
+            Life -= 5;
             HealthSlider.value = Life;
         }
         if (collider.gameObject.name == "ShootSwitchCapsule01" ||
             collider.gameObject.name == "ShootSwitchCapsule01(Clone)")
         {
             _prefabShoot = PrefabShootList[0];
+            Score += PointGivenBySwitchShoot;
         }
         if (collider.gameObject.name == "ShootSwitchCapsule03" ||
             collider.gameObject.name == "ShootSwitchCapsule03(Clone)")
         {
             _prefabShoot = PrefabShootList[PrefabShootList.Length - 1];
+            Score += PointGivenBySwitchShoot;
         }
     }
 }

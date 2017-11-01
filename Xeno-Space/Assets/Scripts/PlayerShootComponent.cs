@@ -6,7 +6,7 @@ public class PlayerShootComponent : MonoBehaviour
 {
     public float Speed = 10f;
     public Vector3 Direction;
-	public float LifeTime = 2f;
+    public float LifeTime = 2f;
 
     void Update()
     {
@@ -16,7 +16,10 @@ public class PlayerShootComponent : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.GetComponent<PlayerShootComponent>() || collider.gameObject.GetComponent<PlayerController>())
+        if (collider.gameObject.GetComponent<PlayerShootComponent>() ||
+            collider.gameObject.GetComponent<PlayerController>() ||
+            collider.gameObject.GetComponent<FoeShootComponent>() ||
+            collider.gameObject.GetComponent<ShootSwitchCapsule>())
             return;
 
         GameObject.Destroy(gameObject);
