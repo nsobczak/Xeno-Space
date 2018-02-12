@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
 
     private GameObject _prefabShoot;
     private float _mShootTimer = 0.1f;
+    private Rigidbody _rb;
 
     public void GameOver()
     {
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
     {
         Score = 0;
         _prefabShoot = PrefabShootList[0];
+        _rb = GetComponent<Rigidbody>();
     }
 
     private void Shoot()
@@ -63,36 +65,57 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         _mShootTimer -= Time.deltaTime;
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position); //stay in screen
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
 
-#if UNITY_STANDALONE || UNITY_WEBPLAYER //move
+        // ===stay in screen===
+        //right
+        if (screenPos.x > Screen.width)
+        {
+            transform.position += new Vector3(-1, 0, 0);
+        }
+
+        //left
+        if (screenPos.x < 0)
+        {
+            transform.position += new Vector3(1, 0, 0);
+        }
+
+        //down
+        if (screenPos.y < 0)
+        {
+            transform.position += new Vector3(0, 1, 0);
+        }
+
+        //up
+        if (screenPos.y > Screen.height)
+        {
+            transform.position += new Vector3(0, -1, 0);
+        }
+
+        // ===move===
+#if UNITY_STANDALONE || UNITY_WEBPLAYER
         if (Input.GetKey(KeyCode.UpArrow) && screenPos.y < Screen.height)
-        {
             transform.position += new Vector3(0, 3, 0) * Time.deltaTime * Speed;
-        }
         if (Input.GetKey(KeyCode.RightArrow) && screenPos.x < Screen.width)
-        {
             transform.position += new Vector3(3, 0, 0) * Time.deltaTime * Speed;
-        }
         if (Input.GetKey(KeyCode.LeftArrow) && screenPos.x > 0)
-        {
             transform.position += new Vector3(-3, 0, 0) * Time.deltaTime * Speed;
-        }
         if (Input.GetKey(KeyCode.DownArrow) && screenPos.y > 0)
-        {
             transform.position += new Vector3(0, -3, 0) * Time.deltaTime * Speed;
-        }
         //shoot
         if (Input.GetKey(KeyCode.Space))
-        {
             Shoot();
-        }
     
         #elif UNITY_ANDROID
 
-        if (Input.touchCount > 0 || Input.GetMouseButton(0))
+//        if (SystemInfo.supportsAccelerometer)
+//        {
+//            Vector3 movement = new Vector3(Input.acceleration.x, 0.0f, Input.acceleration.y);
+//            _rb.AddForce(movement * Speed);
+//        }
+//        else 
+    if (Input.touchCount > 0 || Input.GetMouseButton(0))
         {
-            Vector3 screenPosition = Camera.main.WorldToScreenPoint(transform.position);
             Vector3 touch;
             if (Input.touchCount > 0)
                 touch = Input.touches[0].position;
@@ -100,34 +123,29 @@ public class PlayerController : MonoBehaviour
                 touch = Input.mousePosition;
 
             //right
-            if (touch.x > screenPosition.x && screenPos.x < Screen.width)
-            {
+            if (touch.x > screenPos.x && screenPos.x < Screen.width)
                 transform.position += new Vector3(3, 0, 0) * Time.deltaTime * Speed;
-            }
-            //left
-            if (touch.x < screenPosition.x && screenPos.x > 0)
-            {
-                transform.position += new Vector3(-3, 0, 0) * Time.deltaTime * Speed;
-            }
-            //down
-            if (touch.y < screenPosition.y && screenPos.y > 0)
-            {
-                transform.position += new Vector3(0, -3, 0) * Time.deltaTime * Speed;
-            }
-            //up
-            if (touch.y > screenPosition.y && screenPos.y < Screen.height)
-            {
-                transform.position += new Vector3(0, 3, 0) * Time.deltaTime * Speed;
-            }
-        }
-        Shoot();
 
+            //left
+            if (touch.x < screenPos.x && screenPos.x > 0)
+                transform.position += new Vector3(-3, 0, 0) * Time.deltaTime * Speed;
+
+            //down
+            if (touch.y < screenPos.y && screenPos.y > 0)
+                transform.position += new Vector3(0, -3, 0) * Time.deltaTime * Speed;
+
+            //up
+            if (touch.y > screenPos.y && screenPos.y < Screen.height)
+                transform.position += new Vector3(0, 3, 0) * Time.deltaTime * Speed;
+        }
+
+        Shoot();
 #endif
 
-        //update score
+        // ===update score===
         ScoreText.text = Score.ToString();
 
-        //game over
+        // ===game over===
         if (Life <= 0)
         {
             GameOver();
@@ -142,22 +160,26 @@ public class PlayerController : MonoBehaviour
             Life -= 2;
             HealthSlider.value = Life;
         }
+
         if (collider.gameObject.GetComponent<FoeComponent>())
         {
             Life -= 10;
             HealthSlider.value = Life;
         }
+
         if (collider.gameObject.CompareTag("Meteorite"))
         {
             Life -= 5;
             HealthSlider.value = Life;
         }
+
         if (collider.gameObject.name == "ShootSwitchCapsule01" ||
             collider.gameObject.name == "ShootSwitchCapsule01(Clone)")
         {
             _prefabShoot = PrefabShootList[0];
             Score += PointGivenBySwitchShoot;
         }
+
         if (collider.gameObject.name == "ShootSwitchCapsule03" ||
             collider.gameObject.name == "ShootSwitchCapsule03(Clone)")
         {
